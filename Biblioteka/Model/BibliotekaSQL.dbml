@@ -1,0 +1,98 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="Biblioteka" Class="BibliotekaSQLDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=DESKTOP-FNT9N89\ISBD;Initial Catalog=Biblioteka;Integrated Security=True" SettingsObjectName="Biblioteka.Properties.Settings" SettingsPropertyName="BibliotekaConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.Epoka" Member="Epoka">
+    <Type Name="Epoka">
+      <Column Name="IDEpoka" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="NazwaEpoki" Type="System.String" DbType="NChar(50)" CanBeNull="true" />
+      <Association Name="Epoka_Autor" Member="Autor" ThisKey="IDEpoka" OtherKey="EpokaID" Type="Autor" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Wyporzyczone" Member="Wyporzyczone">
+    <Type Name="Wyporzyczone">
+      <Column Name="IDHistorii" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="KsiazkaID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="UzytkownikID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Data_wyp" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="Data_zwr" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Association Name="Ksiazka_Wyporzyczone" Member="Ksiazka" ThisKey="KsiazkaID" OtherKey="IDKsiazki" Type="Ksiazka" IsForeignKey="true" />
+      <Association Name="Uzytkownik_Wyporzyczone" Member="Uzytkownik" ThisKey="UzytkownikID" OtherKey="IDUzytkownika" Type="Uzytkownik" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Gatunek" Member="Gatunek">
+    <Type Name="Gatunek">
+      <Column Name="IDGatunek" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="NazwaGatunku" Type="System.String" DbType="NChar(20)" CanBeNull="true" />
+      <Association Name="Gatunek_Ksiazka" Member="Ksiazka" ThisKey="IDGatunek" OtherKey="GatunekID" Type="Ksiazka" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Ksiazka" Member="Ksiazka">
+    <Type Name="Ksiazka">
+      <Column Name="IDKsiazki" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Tytul" Type="System.String" DbType="NChar(30) NOT NULL" CanBeNull="false" />
+      <Column Name="AutorID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="WydawnictwoID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ISBN" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="Ilosc" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Rok" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="GatunekID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="Ksiazka_Wyporzyczone" Member="Wyporzyczone" ThisKey="IDKsiazki" OtherKey="KsiazkaID" Type="Wyporzyczone" />
+      <Association Name="Ksiazka_Rezerwacja" Member="Rezerwacja" ThisKey="IDKsiazki" OtherKey="KsiazkaID" Type="Rezerwacja" />
+      <Association Name="Gatunek_Ksiazka" Member="Gatunek" ThisKey="GatunekID" OtherKey="IDGatunek" Type="Gatunek" IsForeignKey="true" />
+      <Association Name="Wydawnictwo_Ksiazka" Member="Wydawnictwo" ThisKey="WydawnictwoID" OtherKey="IDWydawnictwo" Type="Wydawnictwo" IsForeignKey="true" />
+      <Association Name="Autor_Ksiazka" Member="Autor" ThisKey="AutorID" OtherKey="IDAutor" Type="Autor" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Narodowosc" Member="Narodowosc">
+    <Type Name="Narodowosc">
+      <Column Name="IDNarodowosc" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="NazwaNarodowosci" Type="System.String" DbType="NChar(20)" CanBeNull="true" />
+      <Association Name="Narodowosc_Autor" Member="Autor" ThisKey="IDNarodowosc" OtherKey="NarodowoscID" Type="Autor" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Rezerwacja" Member="Rezerwacja">
+    <Type Name="Rezerwacja">
+      <Column Name="IDRezerwacja" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="UzytkownikID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="KsiazkaID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="DataRez" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Association Name="Ksiazka_Rezerwacja" Member="Ksiazka" ThisKey="KsiazkaID" OtherKey="IDKsiazki" Type="Ksiazka" IsForeignKey="true" />
+      <Association Name="Uzytkownik_Rezerwacja" Member="Uzytkownik" ThisKey="UzytkownikID" OtherKey="IDUzytkownika" Type="Uzytkownik" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Uzytkownik" Member="Uzytkownik">
+    <Type Name="Uzytkownik">
+      <Column Name="IDUzytkownika" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="ImieU" Type="System.String" DbType="NChar(20)" CanBeNull="true" />
+      <Column Name="NazwiskoU" Type="System.String" DbType="NChar(30)" CanBeNull="true" />
+      <Column Name="Ulica" Type="System.String" DbType="NChar(20)" CanBeNull="true" />
+      <Column Name="Miasto" Type="System.String" DbType="NChar(10)" CanBeNull="true" />
+      <Column Name="Nr_domu" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Login" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="Haslo" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="Tryb" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="Uzytkownik_Wyporzyczone" Member="Wyporzyczone" ThisKey="IDUzytkownika" OtherKey="UzytkownikID" Type="Wyporzyczone" />
+      <Association Name="Uzytkownik_Rezerwacja" Member="Rezerwacja" ThisKey="IDUzytkownika" OtherKey="UzytkownikID" Type="Rezerwacja" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Wydawnictwo" Member="Wydawnictwo">
+    <Type Name="Wydawnictwo">
+      <Column Name="IDWydawnictwo" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="NazwaWyd" Type="System.String" DbType="NChar(30)" CanBeNull="true" />
+      <Association Name="Wydawnictwo_Ksiazka" Member="Ksiazka" ThisKey="IDWydawnictwo" OtherKey="WydawnictwoID" Type="Ksiazka" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Autor" Member="Autor">
+    <Type Name="Autor">
+      <Column Name="IDAutor" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Imie" Type="System.String" DbType="NChar(20)" CanBeNull="true" />
+      <Column Name="Nazwisko" Type="System.String" DbType="NChar(30)" CanBeNull="true" />
+      <Column Name="NarodowoscID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Data_ur" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="Data_sm" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="EpokaID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="Autor_Ksiazka" Member="Ksiazka" ThisKey="IDAutor" OtherKey="AutorID" Type="Ksiazka" />
+      <Association Name="Epoka_Autor" Member="Epoka" ThisKey="EpokaID" OtherKey="IDEpoka" Type="Epoka" IsForeignKey="true" />
+      <Association Name="Narodowosc_Autor" Member="Narodowosc" ThisKey="NarodowoscID" OtherKey="IDNarodowosc" Type="Narodowosc" IsForeignKey="true" />
+    </Type>
+  </Table>
+</Database>
