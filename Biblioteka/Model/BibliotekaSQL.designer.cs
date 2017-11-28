@@ -30,12 +30,24 @@ namespace Biblioteka.Model
 		
     #region Extensibility Method Definitions
     partial void OnCreated();
+    partial void InsertWypozyczone(Wypozyczone instance);
+    partial void UpdateWypozyczone(Wypozyczone instance);
+    partial void DeleteWypozyczone(Wypozyczone instance);
+    partial void InsertAutor(Autor instance);
+    partial void UpdateAutor(Autor instance);
+    partial void DeleteAutor(Autor instance);
+    partial void InsertAutorzyKsiazek(AutorzyKsiazek instance);
+    partial void UpdateAutorzyKsiazek(AutorzyKsiazek instance);
+    partial void DeleteAutorzyKsiazek(AutorzyKsiazek instance);
+    partial void InsertCzytelnik(Czytelnik instance);
+    partial void UpdateCzytelnik(Czytelnik instance);
+    partial void DeleteCzytelnik(Czytelnik instance);
+    partial void InsertEgzemplarz(Egzemplarz instance);
+    partial void UpdateEgzemplarz(Egzemplarz instance);
+    partial void DeleteEgzemplarz(Egzemplarz instance);
     partial void InsertEpoka(Epoka instance);
     partial void UpdateEpoka(Epoka instance);
     partial void DeleteEpoka(Epoka instance);
-    partial void InsertWyporzyczone(Wyporzyczone instance);
-    partial void UpdateWyporzyczone(Wyporzyczone instance);
-    partial void DeleteWyporzyczone(Wyporzyczone instance);
     partial void InsertGatunek(Gatunek instance);
     partial void UpdateGatunek(Gatunek instance);
     partial void DeleteGatunek(Gatunek instance);
@@ -45,18 +57,15 @@ namespace Biblioteka.Model
     partial void InsertNarodowosc(Narodowosc instance);
     partial void UpdateNarodowosc(Narodowosc instance);
     partial void DeleteNarodowosc(Narodowosc instance);
+    partial void InsertPracownik(Pracownik instance);
+    partial void UpdatePracownik(Pracownik instance);
+    partial void DeletePracownik(Pracownik instance);
     partial void InsertRezerwacja(Rezerwacja instance);
     partial void UpdateRezerwacja(Rezerwacja instance);
     partial void DeleteRezerwacja(Rezerwacja instance);
-    partial void InsertUzytkownik(Uzytkownik instance);
-    partial void UpdateUzytkownik(Uzytkownik instance);
-    partial void DeleteUzytkownik(Uzytkownik instance);
     partial void InsertWydawnictwo(Wydawnictwo instance);
     partial void UpdateWydawnictwo(Wydawnictwo instance);
     partial void DeleteWydawnictwo(Wydawnictwo instance);
-    partial void InsertAutor(Autor instance);
-    partial void UpdateAutor(Autor instance);
-    partial void DeleteAutor(Autor instance);
     #endregion
 		
 		public BibliotekaSQLDataContext() : 
@@ -89,19 +98,51 @@ namespace Biblioteka.Model
 			OnCreated();
 		}
 		
+		public System.Data.Linq.Table<Wypozyczone> Wypozyczone
+		{
+			get
+			{
+				return this.GetTable<Wypozyczone>();
+			}
+		}
+		
+		public System.Data.Linq.Table<Autor> Autor
+		{
+			get
+			{
+				return this.GetTable<Autor>();
+			}
+		}
+		
+		public System.Data.Linq.Table<AutorzyKsiazek> AutorzyKsiazek
+		{
+			get
+			{
+				return this.GetTable<AutorzyKsiazek>();
+			}
+		}
+		
+		public System.Data.Linq.Table<Czytelnik> Czytelnik
+		{
+			get
+			{
+				return this.GetTable<Czytelnik>();
+			}
+		}
+		
+		public System.Data.Linq.Table<Egzemplarz> Egzemplarz
+		{
+			get
+			{
+				return this.GetTable<Egzemplarz>();
+			}
+		}
+		
 		public System.Data.Linq.Table<Epoka> Epoka
 		{
 			get
 			{
 				return this.GetTable<Epoka>();
-			}
-		}
-		
-		public System.Data.Linq.Table<Wyporzyczone> Wyporzyczone
-		{
-			get
-			{
-				return this.GetTable<Wyporzyczone>();
 			}
 		}
 		
@@ -129,19 +170,19 @@ namespace Biblioteka.Model
 			}
 		}
 		
+		public System.Data.Linq.Table<Pracownik> Pracownik
+		{
+			get
+			{
+				return this.GetTable<Pracownik>();
+			}
+		}
+		
 		public System.Data.Linq.Table<Rezerwacja> Rezerwacja
 		{
 			get
 			{
 				return this.GetTable<Rezerwacja>();
-			}
-		}
-		
-		public System.Data.Linq.Table<Uzytkownik> Uzytkownik
-		{
-			get
-			{
-				return this.GetTable<Uzytkownik>();
 			}
 		}
 		
@@ -152,13 +193,1283 @@ namespace Biblioteka.Model
 				return this.GetTable<Wydawnictwo>();
 			}
 		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Wypozyczone")]
+	public partial class Wypozyczone : INotifyPropertyChanging, INotifyPropertyChanged
+	{
 		
-		public System.Data.Linq.Table<Autor> Autor
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _IDHistorii;
+		
+		private System.Nullable<int> _EgzemplarzID;
+		
+		private System.Nullable<int> _UzytkownikID;
+		
+		private System.Nullable<System.DateTime> _Data_wyp;
+		
+		private System.Nullable<System.DateTime> _Data_zwr;
+		
+		private System.Nullable<int> _PracownikID;
+		
+		private EntityRef<Czytelnik> _Czytelnik;
+		
+		private EntityRef<Egzemplarz> _Egzemplarz;
+		
+		private EntityRef<Pracownik> _Pracownik;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIDHistoriiChanging(int value);
+    partial void OnIDHistoriiChanged();
+    partial void OnEgzemplarzIDChanging(System.Nullable<int> value);
+    partial void OnEgzemplarzIDChanged();
+    partial void OnUzytkownikIDChanging(System.Nullable<int> value);
+    partial void OnUzytkownikIDChanged();
+    partial void OnData_wypChanging(System.Nullable<System.DateTime> value);
+    partial void OnData_wypChanged();
+    partial void OnData_zwrChanging(System.Nullable<System.DateTime> value);
+    partial void OnData_zwrChanged();
+    partial void OnPracownikIDChanging(System.Nullable<int> value);
+    partial void OnPracownikIDChanged();
+    #endregion
+		
+		public Wypozyczone()
+		{
+			this._Czytelnik = default(EntityRef<Czytelnik>);
+			this._Egzemplarz = default(EntityRef<Egzemplarz>);
+			this._Pracownik = default(EntityRef<Pracownik>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IDHistorii", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int IDHistorii
 		{
 			get
 			{
-				return this.GetTable<Autor>();
+				return this._IDHistorii;
 			}
+			set
+			{
+				if ((this._IDHistorii != value))
+				{
+					this.OnIDHistoriiChanging(value);
+					this.SendPropertyChanging();
+					this._IDHistorii = value;
+					this.SendPropertyChanged("IDHistorii");
+					this.OnIDHistoriiChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_EgzemplarzID", DbType="Int")]
+		public System.Nullable<int> EgzemplarzID
+		{
+			get
+			{
+				return this._EgzemplarzID;
+			}
+			set
+			{
+				if ((this._EgzemplarzID != value))
+				{
+					if (this._Egzemplarz.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnEgzemplarzIDChanging(value);
+					this.SendPropertyChanging();
+					this._EgzemplarzID = value;
+					this.SendPropertyChanged("EgzemplarzID");
+					this.OnEgzemplarzIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UzytkownikID", DbType="Int")]
+		public System.Nullable<int> UzytkownikID
+		{
+			get
+			{
+				return this._UzytkownikID;
+			}
+			set
+			{
+				if ((this._UzytkownikID != value))
+				{
+					this.OnUzytkownikIDChanging(value);
+					this.SendPropertyChanging();
+					this._UzytkownikID = value;
+					this.SendPropertyChanged("UzytkownikID");
+					this.OnUzytkownikIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Data_wyp", DbType="Date")]
+		public System.Nullable<System.DateTime> Data_wyp
+		{
+			get
+			{
+				return this._Data_wyp;
+			}
+			set
+			{
+				if ((this._Data_wyp != value))
+				{
+					this.OnData_wypChanging(value);
+					this.SendPropertyChanging();
+					this._Data_wyp = value;
+					this.SendPropertyChanged("Data_wyp");
+					this.OnData_wypChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Data_zwr", DbType="Date")]
+		public System.Nullable<System.DateTime> Data_zwr
+		{
+			get
+			{
+				return this._Data_zwr;
+			}
+			set
+			{
+				if ((this._Data_zwr != value))
+				{
+					this.OnData_zwrChanging(value);
+					this.SendPropertyChanging();
+					this._Data_zwr = value;
+					this.SendPropertyChanged("Data_zwr");
+					this.OnData_zwrChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PracownikID", DbType="Int")]
+		public System.Nullable<int> PracownikID
+		{
+			get
+			{
+				return this._PracownikID;
+			}
+			set
+			{
+				if ((this._PracownikID != value))
+				{
+					if ((this._Czytelnik.HasLoadedOrAssignedValue || this._Pracownik.HasLoadedOrAssignedValue))
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnPracownikIDChanging(value);
+					this.SendPropertyChanging();
+					this._PracownikID = value;
+					this.SendPropertyChanged("PracownikID");
+					this.OnPracownikIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Czytelnik_Wypozyczone", Storage="_Czytelnik", ThisKey="PracownikID", OtherKey="IDUzytkownika", IsForeignKey=true)]
+		public Czytelnik Czytelnik
+		{
+			get
+			{
+				return this._Czytelnik.Entity;
+			}
+			set
+			{
+				Czytelnik previousValue = this._Czytelnik.Entity;
+				if (((previousValue != value) 
+							|| (this._Czytelnik.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Czytelnik.Entity = null;
+						previousValue.Wypozyczone.Remove(this);
+					}
+					this._Czytelnik.Entity = value;
+					if ((value != null))
+					{
+						value.Wypozyczone.Add(this);
+						this._PracownikID = value.IDUzytkownika;
+					}
+					else
+					{
+						this._PracownikID = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("Czytelnik");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Egzemplarz_Wypozyczone", Storage="_Egzemplarz", ThisKey="EgzemplarzID", OtherKey="IDEgzeplarza", IsForeignKey=true)]
+		public Egzemplarz Egzemplarz
+		{
+			get
+			{
+				return this._Egzemplarz.Entity;
+			}
+			set
+			{
+				Egzemplarz previousValue = this._Egzemplarz.Entity;
+				if (((previousValue != value) 
+							|| (this._Egzemplarz.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Egzemplarz.Entity = null;
+						previousValue.Wypozyczone.Remove(this);
+					}
+					this._Egzemplarz.Entity = value;
+					if ((value != null))
+					{
+						value.Wypozyczone.Add(this);
+						this._EgzemplarzID = value.IDEgzeplarza;
+					}
+					else
+					{
+						this._EgzemplarzID = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("Egzemplarz");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Pracownik_Wypozyczone", Storage="_Pracownik", ThisKey="PracownikID", OtherKey="IDPracownika", IsForeignKey=true)]
+		public Pracownik Pracownik
+		{
+			get
+			{
+				return this._Pracownik.Entity;
+			}
+			set
+			{
+				Pracownik previousValue = this._Pracownik.Entity;
+				if (((previousValue != value) 
+							|| (this._Pracownik.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Pracownik.Entity = null;
+						previousValue.Wypozyczone.Remove(this);
+					}
+					this._Pracownik.Entity = value;
+					if ((value != null))
+					{
+						value.Wypozyczone.Add(this);
+						this._PracownikID = value.IDPracownika;
+					}
+					else
+					{
+						this._PracownikID = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("Pracownik");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Autor")]
+	public partial class Autor : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _IDAutor;
+		
+		private string _Imie;
+		
+		private string _Nazwisko;
+		
+		private System.Nullable<int> _NarodowoscID;
+		
+		private System.Nullable<System.DateTime> _Data_ur;
+		
+		private System.Nullable<System.DateTime> _Data_sm;
+		
+		private System.Nullable<int> _EpokaID;
+		
+		private EntitySet<AutorzyKsiazek> _AutorzyKsiazek;
+		
+		private EntityRef<Epoka> _Epoka;
+		
+		private EntityRef<Narodowosc> _Narodowosc;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIDAutorChanging(int value);
+    partial void OnIDAutorChanged();
+    partial void OnImieChanging(string value);
+    partial void OnImieChanged();
+    partial void OnNazwiskoChanging(string value);
+    partial void OnNazwiskoChanged();
+    partial void OnNarodowoscIDChanging(System.Nullable<int> value);
+    partial void OnNarodowoscIDChanged();
+    partial void OnData_urChanging(System.Nullable<System.DateTime> value);
+    partial void OnData_urChanged();
+    partial void OnData_smChanging(System.Nullable<System.DateTime> value);
+    partial void OnData_smChanged();
+    partial void OnEpokaIDChanging(System.Nullable<int> value);
+    partial void OnEpokaIDChanged();
+    #endregion
+		
+		public Autor()
+		{
+			this._AutorzyKsiazek = new EntitySet<AutorzyKsiazek>(new Action<AutorzyKsiazek>(this.attach_AutorzyKsiazek), new Action<AutorzyKsiazek>(this.detach_AutorzyKsiazek));
+			this._Epoka = default(EntityRef<Epoka>);
+			this._Narodowosc = default(EntityRef<Narodowosc>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IDAutor", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int IDAutor
+		{
+			get
+			{
+				return this._IDAutor;
+			}
+			set
+			{
+				if ((this._IDAutor != value))
+				{
+					this.OnIDAutorChanging(value);
+					this.SendPropertyChanging();
+					this._IDAutor = value;
+					this.SendPropertyChanged("IDAutor");
+					this.OnIDAutorChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Imie", DbType="VarChar(20)")]
+		public string Imie
+		{
+			get
+			{
+				return this._Imie;
+			}
+			set
+			{
+				if ((this._Imie != value))
+				{
+					this.OnImieChanging(value);
+					this.SendPropertyChanging();
+					this._Imie = value;
+					this.SendPropertyChanged("Imie");
+					this.OnImieChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Nazwisko", DbType="VarChar(30)")]
+		public string Nazwisko
+		{
+			get
+			{
+				return this._Nazwisko;
+			}
+			set
+			{
+				if ((this._Nazwisko != value))
+				{
+					this.OnNazwiskoChanging(value);
+					this.SendPropertyChanging();
+					this._Nazwisko = value;
+					this.SendPropertyChanged("Nazwisko");
+					this.OnNazwiskoChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NarodowoscID", DbType="Int")]
+		public System.Nullable<int> NarodowoscID
+		{
+			get
+			{
+				return this._NarodowoscID;
+			}
+			set
+			{
+				if ((this._NarodowoscID != value))
+				{
+					if (this._Narodowosc.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnNarodowoscIDChanging(value);
+					this.SendPropertyChanging();
+					this._NarodowoscID = value;
+					this.SendPropertyChanged("NarodowoscID");
+					this.OnNarodowoscIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Data_ur", DbType="Date")]
+		public System.Nullable<System.DateTime> Data_ur
+		{
+			get
+			{
+				return this._Data_ur;
+			}
+			set
+			{
+				if ((this._Data_ur != value))
+				{
+					this.OnData_urChanging(value);
+					this.SendPropertyChanging();
+					this._Data_ur = value;
+					this.SendPropertyChanged("Data_ur");
+					this.OnData_urChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Data_sm", DbType="Date")]
+		public System.Nullable<System.DateTime> Data_sm
+		{
+			get
+			{
+				return this._Data_sm;
+			}
+			set
+			{
+				if ((this._Data_sm != value))
+				{
+					this.OnData_smChanging(value);
+					this.SendPropertyChanging();
+					this._Data_sm = value;
+					this.SendPropertyChanged("Data_sm");
+					this.OnData_smChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_EpokaID", DbType="Int")]
+		public System.Nullable<int> EpokaID
+		{
+			get
+			{
+				return this._EpokaID;
+			}
+			set
+			{
+				if ((this._EpokaID != value))
+				{
+					if (this._Epoka.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnEpokaIDChanging(value);
+					this.SendPropertyChanging();
+					this._EpokaID = value;
+					this.SendPropertyChanged("EpokaID");
+					this.OnEpokaIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Autor_AutorzyKsiazek", Storage="_AutorzyKsiazek", ThisKey="IDAutor", OtherKey="AutorID")]
+		public EntitySet<AutorzyKsiazek> AutorzyKsiazek
+		{
+			get
+			{
+				return this._AutorzyKsiazek;
+			}
+			set
+			{
+				this._AutorzyKsiazek.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Epoka_Autor", Storage="_Epoka", ThisKey="EpokaID", OtherKey="IDEpoka", IsForeignKey=true)]
+		public Epoka Epoka
+		{
+			get
+			{
+				return this._Epoka.Entity;
+			}
+			set
+			{
+				Epoka previousValue = this._Epoka.Entity;
+				if (((previousValue != value) 
+							|| (this._Epoka.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Epoka.Entity = null;
+						previousValue.Autor.Remove(this);
+					}
+					this._Epoka.Entity = value;
+					if ((value != null))
+					{
+						value.Autor.Add(this);
+						this._EpokaID = value.IDEpoka;
+					}
+					else
+					{
+						this._EpokaID = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("Epoka");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Narodowosc_Autor", Storage="_Narodowosc", ThisKey="NarodowoscID", OtherKey="IDNarodowosc", IsForeignKey=true)]
+		public Narodowosc Narodowosc
+		{
+			get
+			{
+				return this._Narodowosc.Entity;
+			}
+			set
+			{
+				Narodowosc previousValue = this._Narodowosc.Entity;
+				if (((previousValue != value) 
+							|| (this._Narodowosc.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Narodowosc.Entity = null;
+						previousValue.Autor.Remove(this);
+					}
+					this._Narodowosc.Entity = value;
+					if ((value != null))
+					{
+						value.Autor.Add(this);
+						this._NarodowoscID = value.IDNarodowosc;
+					}
+					else
+					{
+						this._NarodowoscID = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("Narodowosc");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_AutorzyKsiazek(AutorzyKsiazek entity)
+		{
+			this.SendPropertyChanging();
+			entity.Autor = this;
+		}
+		
+		private void detach_AutorzyKsiazek(AutorzyKsiazek entity)
+		{
+			this.SendPropertyChanging();
+			entity.Autor = null;
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.AutorzyKsiazek")]
+	public partial class AutorzyKsiazek : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _IDAutorzy;
+		
+		private System.Nullable<int> _AutorID;
+		
+		private System.Nullable<int> _KsiazkaID;
+		
+		private EntityRef<Autor> _Autor;
+		
+		private EntityRef<Ksiazka> _Ksiazka;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIDAutorzyChanging(int value);
+    partial void OnIDAutorzyChanged();
+    partial void OnAutorIDChanging(System.Nullable<int> value);
+    partial void OnAutorIDChanged();
+    partial void OnKsiazkaIDChanging(System.Nullable<int> value);
+    partial void OnKsiazkaIDChanged();
+    #endregion
+		
+		public AutorzyKsiazek()
+		{
+			this._Autor = default(EntityRef<Autor>);
+			this._Ksiazka = default(EntityRef<Ksiazka>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IDAutorzy", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int IDAutorzy
+		{
+			get
+			{
+				return this._IDAutorzy;
+			}
+			set
+			{
+				if ((this._IDAutorzy != value))
+				{
+					this.OnIDAutorzyChanging(value);
+					this.SendPropertyChanging();
+					this._IDAutorzy = value;
+					this.SendPropertyChanged("IDAutorzy");
+					this.OnIDAutorzyChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AutorID", DbType="Int")]
+		public System.Nullable<int> AutorID
+		{
+			get
+			{
+				return this._AutorID;
+			}
+			set
+			{
+				if ((this._AutorID != value))
+				{
+					if (this._Autor.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnAutorIDChanging(value);
+					this.SendPropertyChanging();
+					this._AutorID = value;
+					this.SendPropertyChanged("AutorID");
+					this.OnAutorIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_KsiazkaID", DbType="Int")]
+		public System.Nullable<int> KsiazkaID
+		{
+			get
+			{
+				return this._KsiazkaID;
+			}
+			set
+			{
+				if ((this._KsiazkaID != value))
+				{
+					if (this._Ksiazka.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnKsiazkaIDChanging(value);
+					this.SendPropertyChanging();
+					this._KsiazkaID = value;
+					this.SendPropertyChanged("KsiazkaID");
+					this.OnKsiazkaIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Autor_AutorzyKsiazek", Storage="_Autor", ThisKey="AutorID", OtherKey="IDAutor", IsForeignKey=true)]
+		public Autor Autor
+		{
+			get
+			{
+				return this._Autor.Entity;
+			}
+			set
+			{
+				Autor previousValue = this._Autor.Entity;
+				if (((previousValue != value) 
+							|| (this._Autor.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Autor.Entity = null;
+						previousValue.AutorzyKsiazek.Remove(this);
+					}
+					this._Autor.Entity = value;
+					if ((value != null))
+					{
+						value.AutorzyKsiazek.Add(this);
+						this._AutorID = value.IDAutor;
+					}
+					else
+					{
+						this._AutorID = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("Autor");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Ksiazka_AutorzyKsiazek", Storage="_Ksiazka", ThisKey="KsiazkaID", OtherKey="IDKsiazki", IsForeignKey=true)]
+		public Ksiazka Ksiazka
+		{
+			get
+			{
+				return this._Ksiazka.Entity;
+			}
+			set
+			{
+				Ksiazka previousValue = this._Ksiazka.Entity;
+				if (((previousValue != value) 
+							|| (this._Ksiazka.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Ksiazka.Entity = null;
+						previousValue.AutorzyKsiazek.Remove(this);
+					}
+					this._Ksiazka.Entity = value;
+					if ((value != null))
+					{
+						value.AutorzyKsiazek.Add(this);
+						this._KsiazkaID = value.IDKsiazki;
+					}
+					else
+					{
+						this._KsiazkaID = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("Ksiazka");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Czytelnik")]
+	public partial class Czytelnik : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _IDUzytkownika;
+		
+		private string _ImieU;
+		
+		private string _NazwiskoU;
+		
+		private string _Ulica;
+		
+		private string _Miasto;
+		
+		private System.Nullable<int> _Nr_domu;
+		
+		private string _Login;
+		
+		private string _Haslo;
+		
+		private EntitySet<Wypozyczone> _Wypozyczone;
+		
+		private EntitySet<Rezerwacja> _Rezerwacja;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIDUzytkownikaChanging(int value);
+    partial void OnIDUzytkownikaChanged();
+    partial void OnImieUChanging(string value);
+    partial void OnImieUChanged();
+    partial void OnNazwiskoUChanging(string value);
+    partial void OnNazwiskoUChanged();
+    partial void OnUlicaChanging(string value);
+    partial void OnUlicaChanged();
+    partial void OnMiastoChanging(string value);
+    partial void OnMiastoChanged();
+    partial void OnNr_domuChanging(System.Nullable<int> value);
+    partial void OnNr_domuChanged();
+    partial void OnLoginChanging(string value);
+    partial void OnLoginChanged();
+    partial void OnHasloChanging(string value);
+    partial void OnHasloChanged();
+    #endregion
+		
+		public Czytelnik()
+		{
+			this._Wypozyczone = new EntitySet<Wypozyczone>(new Action<Wypozyczone>(this.attach_Wypozyczone), new Action<Wypozyczone>(this.detach_Wypozyczone));
+			this._Rezerwacja = new EntitySet<Rezerwacja>(new Action<Rezerwacja>(this.attach_Rezerwacja), new Action<Rezerwacja>(this.detach_Rezerwacja));
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IDUzytkownika", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int IDUzytkownika
+		{
+			get
+			{
+				return this._IDUzytkownika;
+			}
+			set
+			{
+				if ((this._IDUzytkownika != value))
+				{
+					this.OnIDUzytkownikaChanging(value);
+					this.SendPropertyChanging();
+					this._IDUzytkownika = value;
+					this.SendPropertyChanged("IDUzytkownika");
+					this.OnIDUzytkownikaChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ImieU", DbType="VarChar(20)")]
+		public string ImieU
+		{
+			get
+			{
+				return this._ImieU;
+			}
+			set
+			{
+				if ((this._ImieU != value))
+				{
+					this.OnImieUChanging(value);
+					this.SendPropertyChanging();
+					this._ImieU = value;
+					this.SendPropertyChanged("ImieU");
+					this.OnImieUChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NazwiskoU", DbType="VarChar(30)")]
+		public string NazwiskoU
+		{
+			get
+			{
+				return this._NazwiskoU;
+			}
+			set
+			{
+				if ((this._NazwiskoU != value))
+				{
+					this.OnNazwiskoUChanging(value);
+					this.SendPropertyChanging();
+					this._NazwiskoU = value;
+					this.SendPropertyChanged("NazwiskoU");
+					this.OnNazwiskoUChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Ulica", DbType="VarChar(20)")]
+		public string Ulica
+		{
+			get
+			{
+				return this._Ulica;
+			}
+			set
+			{
+				if ((this._Ulica != value))
+				{
+					this.OnUlicaChanging(value);
+					this.SendPropertyChanging();
+					this._Ulica = value;
+					this.SendPropertyChanged("Ulica");
+					this.OnUlicaChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Miasto", DbType="VarChar(20)")]
+		public string Miasto
+		{
+			get
+			{
+				return this._Miasto;
+			}
+			set
+			{
+				if ((this._Miasto != value))
+				{
+					this.OnMiastoChanging(value);
+					this.SendPropertyChanging();
+					this._Miasto = value;
+					this.SendPropertyChanged("Miasto");
+					this.OnMiastoChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Nr_domu", DbType="Int")]
+		public System.Nullable<int> Nr_domu
+		{
+			get
+			{
+				return this._Nr_domu;
+			}
+			set
+			{
+				if ((this._Nr_domu != value))
+				{
+					this.OnNr_domuChanging(value);
+					this.SendPropertyChanging();
+					this._Nr_domu = value;
+					this.SendPropertyChanged("Nr_domu");
+					this.OnNr_domuChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Login", DbType="VarChar(20)")]
+		public string Login
+		{
+			get
+			{
+				return this._Login;
+			}
+			set
+			{
+				if ((this._Login != value))
+				{
+					this.OnLoginChanging(value);
+					this.SendPropertyChanging();
+					this._Login = value;
+					this.SendPropertyChanged("Login");
+					this.OnLoginChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Haslo", DbType="VarChar(20)")]
+		public string Haslo
+		{
+			get
+			{
+				return this._Haslo;
+			}
+			set
+			{
+				if ((this._Haslo != value))
+				{
+					this.OnHasloChanging(value);
+					this.SendPropertyChanging();
+					this._Haslo = value;
+					this.SendPropertyChanged("Haslo");
+					this.OnHasloChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Czytelnik_Wypozyczone", Storage="_Wypozyczone", ThisKey="IDUzytkownika", OtherKey="PracownikID")]
+		public EntitySet<Wypozyczone> Wypozyczone
+		{
+			get
+			{
+				return this._Wypozyczone;
+			}
+			set
+			{
+				this._Wypozyczone.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Czytelnik_Rezerwacja", Storage="_Rezerwacja", ThisKey="IDUzytkownika", OtherKey="UzytkownikID")]
+		public EntitySet<Rezerwacja> Rezerwacja
+		{
+			get
+			{
+				return this._Rezerwacja;
+			}
+			set
+			{
+				this._Rezerwacja.Assign(value);
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_Wypozyczone(Wypozyczone entity)
+		{
+			this.SendPropertyChanging();
+			entity.Czytelnik = this;
+		}
+		
+		private void detach_Wypozyczone(Wypozyczone entity)
+		{
+			this.SendPropertyChanging();
+			entity.Czytelnik = null;
+		}
+		
+		private void attach_Rezerwacja(Rezerwacja entity)
+		{
+			this.SendPropertyChanging();
+			entity.Czytelnik = this;
+		}
+		
+		private void detach_Rezerwacja(Rezerwacja entity)
+		{
+			this.SendPropertyChanging();
+			entity.Czytelnik = null;
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Egzemplarz")]
+	public partial class Egzemplarz : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _IDEgzeplarza;
+		
+		private System.Nullable<int> _KsiazkaID;
+		
+		private EntitySet<Wypozyczone> _Wypozyczone;
+		
+		private EntitySet<Rezerwacja> _Rezerwacja;
+		
+		private EntityRef<Ksiazka> _Ksiazka;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIDEgzeplarzaChanging(int value);
+    partial void OnIDEgzeplarzaChanged();
+    partial void OnKsiazkaIDChanging(System.Nullable<int> value);
+    partial void OnKsiazkaIDChanged();
+    #endregion
+		
+		public Egzemplarz()
+		{
+			this._Wypozyczone = new EntitySet<Wypozyczone>(new Action<Wypozyczone>(this.attach_Wypozyczone), new Action<Wypozyczone>(this.detach_Wypozyczone));
+			this._Rezerwacja = new EntitySet<Rezerwacja>(new Action<Rezerwacja>(this.attach_Rezerwacja), new Action<Rezerwacja>(this.detach_Rezerwacja));
+			this._Ksiazka = default(EntityRef<Ksiazka>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IDEgzeplarza", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int IDEgzeplarza
+		{
+			get
+			{
+				return this._IDEgzeplarza;
+			}
+			set
+			{
+				if ((this._IDEgzeplarza != value))
+				{
+					this.OnIDEgzeplarzaChanging(value);
+					this.SendPropertyChanging();
+					this._IDEgzeplarza = value;
+					this.SendPropertyChanged("IDEgzeplarza");
+					this.OnIDEgzeplarzaChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_KsiazkaID", DbType="Int")]
+		public System.Nullable<int> KsiazkaID
+		{
+			get
+			{
+				return this._KsiazkaID;
+			}
+			set
+			{
+				if ((this._KsiazkaID != value))
+				{
+					if (this._Ksiazka.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnKsiazkaIDChanging(value);
+					this.SendPropertyChanging();
+					this._KsiazkaID = value;
+					this.SendPropertyChanged("KsiazkaID");
+					this.OnKsiazkaIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Egzemplarz_Wypozyczone", Storage="_Wypozyczone", ThisKey="IDEgzeplarza", OtherKey="EgzemplarzID")]
+		public EntitySet<Wypozyczone> Wypozyczone
+		{
+			get
+			{
+				return this._Wypozyczone;
+			}
+			set
+			{
+				this._Wypozyczone.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Egzemplarz_Rezerwacja", Storage="_Rezerwacja", ThisKey="IDEgzeplarza", OtherKey="EgzemplarzID")]
+		public EntitySet<Rezerwacja> Rezerwacja
+		{
+			get
+			{
+				return this._Rezerwacja;
+			}
+			set
+			{
+				this._Rezerwacja.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Ksiazka_Egzemplarz", Storage="_Ksiazka", ThisKey="KsiazkaID", OtherKey="IDKsiazki", IsForeignKey=true)]
+		public Ksiazka Ksiazka
+		{
+			get
+			{
+				return this._Ksiazka.Entity;
+			}
+			set
+			{
+				Ksiazka previousValue = this._Ksiazka.Entity;
+				if (((previousValue != value) 
+							|| (this._Ksiazka.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Ksiazka.Entity = null;
+						previousValue.Egzemplarz.Remove(this);
+					}
+					this._Ksiazka.Entity = value;
+					if ((value != null))
+					{
+						value.Egzemplarz.Add(this);
+						this._KsiazkaID = value.IDKsiazki;
+					}
+					else
+					{
+						this._KsiazkaID = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("Ksiazka");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_Wypozyczone(Wypozyczone entity)
+		{
+			this.SendPropertyChanging();
+			entity.Egzemplarz = this;
+		}
+		
+		private void detach_Wypozyczone(Wypozyczone entity)
+		{
+			this.SendPropertyChanging();
+			entity.Egzemplarz = null;
+		}
+		
+		private void attach_Rezerwacja(Rezerwacja entity)
+		{
+			this.SendPropertyChanging();
+			entity.Egzemplarz = this;
+		}
+		
+		private void detach_Rezerwacja(Rezerwacja entity)
+		{
+			this.SendPropertyChanging();
+			entity.Egzemplarz = null;
 		}
 	}
 	
@@ -210,7 +1521,7 @@ namespace Biblioteka.Model
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NazwaEpoki", DbType="NChar(50)")]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NazwaEpoki", DbType="VarChar(30)")]
 		public string NazwaEpoki
 		{
 			get
@@ -276,246 +1587,6 @@ namespace Biblioteka.Model
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Wyporzyczone")]
-	public partial class Wyporzyczone : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _IDHistorii;
-		
-		private System.Nullable<int> _KsiazkaID;
-		
-		private System.Nullable<int> _UzytkownikID;
-		
-		private System.Nullable<System.DateTime> _Data_wyp;
-		
-		private System.Nullable<System.DateTime> _Data_zwr;
-		
-		private EntityRef<Ksiazka> _Ksiazka;
-		
-		private EntityRef<Uzytkownik> _Uzytkownik;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnIDHistoriiChanging(int value);
-    partial void OnIDHistoriiChanged();
-    partial void OnKsiazkaIDChanging(System.Nullable<int> value);
-    partial void OnKsiazkaIDChanged();
-    partial void OnUzytkownikIDChanging(System.Nullable<int> value);
-    partial void OnUzytkownikIDChanged();
-    partial void OnData_wypChanging(System.Nullable<System.DateTime> value);
-    partial void OnData_wypChanged();
-    partial void OnData_zwrChanging(System.Nullable<System.DateTime> value);
-    partial void OnData_zwrChanged();
-    #endregion
-		
-		public Wyporzyczone()
-		{
-			this._Ksiazka = default(EntityRef<Ksiazka>);
-			this._Uzytkownik = default(EntityRef<Uzytkownik>);
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IDHistorii", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int IDHistorii
-		{
-			get
-			{
-				return this._IDHistorii;
-			}
-			set
-			{
-				if ((this._IDHistorii != value))
-				{
-					this.OnIDHistoriiChanging(value);
-					this.SendPropertyChanging();
-					this._IDHistorii = value;
-					this.SendPropertyChanged("IDHistorii");
-					this.OnIDHistoriiChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_KsiazkaID", DbType="Int")]
-		public System.Nullable<int> KsiazkaID
-		{
-			get
-			{
-				return this._KsiazkaID;
-			}
-			set
-			{
-				if ((this._KsiazkaID != value))
-				{
-					if (this._Ksiazka.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnKsiazkaIDChanging(value);
-					this.SendPropertyChanging();
-					this._KsiazkaID = value;
-					this.SendPropertyChanged("KsiazkaID");
-					this.OnKsiazkaIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UzytkownikID", DbType="Int")]
-		public System.Nullable<int> UzytkownikID
-		{
-			get
-			{
-				return this._UzytkownikID;
-			}
-			set
-			{
-				if ((this._UzytkownikID != value))
-				{
-					if (this._Uzytkownik.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnUzytkownikIDChanging(value);
-					this.SendPropertyChanging();
-					this._UzytkownikID = value;
-					this.SendPropertyChanged("UzytkownikID");
-					this.OnUzytkownikIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Data_wyp", DbType="Date")]
-		public System.Nullable<System.DateTime> Data_wyp
-		{
-			get
-			{
-				return this._Data_wyp;
-			}
-			set
-			{
-				if ((this._Data_wyp != value))
-				{
-					this.OnData_wypChanging(value);
-					this.SendPropertyChanging();
-					this._Data_wyp = value;
-					this.SendPropertyChanged("Data_wyp");
-					this.OnData_wypChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Data_zwr", DbType="Date")]
-		public System.Nullable<System.DateTime> Data_zwr
-		{
-			get
-			{
-				return this._Data_zwr;
-			}
-			set
-			{
-				if ((this._Data_zwr != value))
-				{
-					this.OnData_zwrChanging(value);
-					this.SendPropertyChanging();
-					this._Data_zwr = value;
-					this.SendPropertyChanged("Data_zwr");
-					this.OnData_zwrChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Ksiazka_Wyporzyczone", Storage="_Ksiazka", ThisKey="KsiazkaID", OtherKey="IDKsiazki", IsForeignKey=true)]
-		public Ksiazka Ksiazka
-		{
-			get
-			{
-				return this._Ksiazka.Entity;
-			}
-			set
-			{
-				Ksiazka previousValue = this._Ksiazka.Entity;
-				if (((previousValue != value) 
-							|| (this._Ksiazka.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._Ksiazka.Entity = null;
-						previousValue.Wyporzyczone.Remove(this);
-					}
-					this._Ksiazka.Entity = value;
-					if ((value != null))
-					{
-						value.Wyporzyczone.Add(this);
-						this._KsiazkaID = value.IDKsiazki;
-					}
-					else
-					{
-						this._KsiazkaID = default(Nullable<int>);
-					}
-					this.SendPropertyChanged("Ksiazka");
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Uzytkownik_Wyporzyczone", Storage="_Uzytkownik", ThisKey="UzytkownikID", OtherKey="IDUzytkownika", IsForeignKey=true)]
-		public Uzytkownik Uzytkownik
-		{
-			get
-			{
-				return this._Uzytkownik.Entity;
-			}
-			set
-			{
-				Uzytkownik previousValue = this._Uzytkownik.Entity;
-				if (((previousValue != value) 
-							|| (this._Uzytkownik.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._Uzytkownik.Entity = null;
-						previousValue.Wyporzyczone.Remove(this);
-					}
-					this._Uzytkownik.Entity = value;
-					if ((value != null))
-					{
-						value.Wyporzyczone.Add(this);
-						this._UzytkownikID = value.IDUzytkownika;
-					}
-					else
-					{
-						this._UzytkownikID = default(Nullable<int>);
-					}
-					this.SendPropertyChanged("Uzytkownik");
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-	}
-	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Gatunek")]
 	public partial class Gatunek : INotifyPropertyChanging, INotifyPropertyChanged
 	{
@@ -564,7 +1635,7 @@ namespace Biblioteka.Model
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NazwaGatunku", DbType="NChar(20)")]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NazwaGatunku", DbType="VarChar(20)")]
 		public string NazwaGatunku
 		{
 			get
@@ -652,15 +1723,13 @@ namespace Biblioteka.Model
 		
 		private System.Nullable<int> _GatunekID;
 		
-		private EntitySet<Wyporzyczone> _Wyporzyczone;
+		private EntitySet<AutorzyKsiazek> _AutorzyKsiazek;
 		
-		private EntitySet<Rezerwacja> _Rezerwacja;
+		private EntitySet<Egzemplarz> _Egzemplarz;
 		
 		private EntityRef<Gatunek> _Gatunek;
 		
 		private EntityRef<Wydawnictwo> _Wydawnictwo;
-		
-		private EntityRef<Autor> _Autor;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -686,11 +1755,10 @@ namespace Biblioteka.Model
 		
 		public Ksiazka()
 		{
-			this._Wyporzyczone = new EntitySet<Wyporzyczone>(new Action<Wyporzyczone>(this.attach_Wyporzyczone), new Action<Wyporzyczone>(this.detach_Wyporzyczone));
-			this._Rezerwacja = new EntitySet<Rezerwacja>(new Action<Rezerwacja>(this.attach_Rezerwacja), new Action<Rezerwacja>(this.detach_Rezerwacja));
+			this._AutorzyKsiazek = new EntitySet<AutorzyKsiazek>(new Action<AutorzyKsiazek>(this.attach_AutorzyKsiazek), new Action<AutorzyKsiazek>(this.detach_AutorzyKsiazek));
+			this._Egzemplarz = new EntitySet<Egzemplarz>(new Action<Egzemplarz>(this.attach_Egzemplarz), new Action<Egzemplarz>(this.detach_Egzemplarz));
 			this._Gatunek = default(EntityRef<Gatunek>);
 			this._Wydawnictwo = default(EntityRef<Wydawnictwo>);
-			this._Autor = default(EntityRef<Autor>);
 			OnCreated();
 		}
 		
@@ -714,7 +1782,7 @@ namespace Biblioteka.Model
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Tytul", DbType="NChar(30) NOT NULL", CanBeNull=false)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Tytul", DbType="VarChar(30) NOT NULL", CanBeNull=false)]
 		public string Tytul
 		{
 			get
@@ -745,10 +1813,6 @@ namespace Biblioteka.Model
 			{
 				if ((this._AutorID != value))
 				{
-					if (this._Autor.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
 					this.OnAutorIDChanging(value);
 					this.SendPropertyChanging();
 					this._AutorID = value;
@@ -866,29 +1930,29 @@ namespace Biblioteka.Model
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Ksiazka_Wyporzyczone", Storage="_Wyporzyczone", ThisKey="IDKsiazki", OtherKey="KsiazkaID")]
-		public EntitySet<Wyporzyczone> Wyporzyczone
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Ksiazka_AutorzyKsiazek", Storage="_AutorzyKsiazek", ThisKey="IDKsiazki", OtherKey="KsiazkaID")]
+		public EntitySet<AutorzyKsiazek> AutorzyKsiazek
 		{
 			get
 			{
-				return this._Wyporzyczone;
+				return this._AutorzyKsiazek;
 			}
 			set
 			{
-				this._Wyporzyczone.Assign(value);
+				this._AutorzyKsiazek.Assign(value);
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Ksiazka_Rezerwacja", Storage="_Rezerwacja", ThisKey="IDKsiazki", OtherKey="KsiazkaID")]
-		public EntitySet<Rezerwacja> Rezerwacja
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Ksiazka_Egzemplarz", Storage="_Egzemplarz", ThisKey="IDKsiazki", OtherKey="KsiazkaID")]
+		public EntitySet<Egzemplarz> Egzemplarz
 		{
 			get
 			{
-				return this._Rezerwacja;
+				return this._Egzemplarz;
 			}
 			set
 			{
-				this._Rezerwacja.Assign(value);
+				this._Egzemplarz.Assign(value);
 			}
 		}
 		
@@ -960,40 +2024,6 @@ namespace Biblioteka.Model
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Autor_Ksiazka", Storage="_Autor", ThisKey="AutorID", OtherKey="IDAutor", IsForeignKey=true)]
-		public Autor Autor
-		{
-			get
-			{
-				return this._Autor.Entity;
-			}
-			set
-			{
-				Autor previousValue = this._Autor.Entity;
-				if (((previousValue != value) 
-							|| (this._Autor.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._Autor.Entity = null;
-						previousValue.Ksiazka.Remove(this);
-					}
-					this._Autor.Entity = value;
-					if ((value != null))
-					{
-						value.Ksiazka.Add(this);
-						this._AutorID = value.IDAutor;
-					}
-					else
-					{
-						this._AutorID = default(Nullable<int>);
-					}
-					this.SendPropertyChanged("Autor");
-				}
-			}
-		}
-		
 		public event PropertyChangingEventHandler PropertyChanging;
 		
 		public event PropertyChangedEventHandler PropertyChanged;
@@ -1014,25 +2044,25 @@ namespace Biblioteka.Model
 			}
 		}
 		
-		private void attach_Wyporzyczone(Wyporzyczone entity)
+		private void attach_AutorzyKsiazek(AutorzyKsiazek entity)
 		{
 			this.SendPropertyChanging();
 			entity.Ksiazka = this;
 		}
 		
-		private void detach_Wyporzyczone(Wyporzyczone entity)
+		private void detach_AutorzyKsiazek(AutorzyKsiazek entity)
 		{
 			this.SendPropertyChanging();
 			entity.Ksiazka = null;
 		}
 		
-		private void attach_Rezerwacja(Rezerwacja entity)
+		private void attach_Egzemplarz(Egzemplarz entity)
 		{
 			this.SendPropertyChanging();
 			entity.Ksiazka = this;
 		}
 		
-		private void detach_Rezerwacja(Rezerwacja entity)
+		private void detach_Egzemplarz(Egzemplarz entity)
 		{
 			this.SendPropertyChanging();
 			entity.Ksiazka = null;
@@ -1087,7 +2117,7 @@ namespace Biblioteka.Model
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NazwaNarodowosci", DbType="NChar(20)")]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NazwaNarodowosci", DbType="VarChar(20)")]
 		public string NazwaNarodowosci
 		{
 			get
@@ -1153,6 +2183,144 @@ namespace Biblioteka.Model
 		}
 	}
 	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Pracownik")]
+	public partial class Pracownik : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _IDPracownika;
+		
+		private string _LoginP;
+		
+		private string _HasloP;
+		
+		private EntitySet<Wypozyczone> _Wypozyczone;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIDPracownikaChanging(int value);
+    partial void OnIDPracownikaChanged();
+    partial void OnLoginPChanging(string value);
+    partial void OnLoginPChanged();
+    partial void OnHasloPChanging(string value);
+    partial void OnHasloPChanged();
+    #endregion
+		
+		public Pracownik()
+		{
+			this._Wypozyczone = new EntitySet<Wypozyczone>(new Action<Wypozyczone>(this.attach_Wypozyczone), new Action<Wypozyczone>(this.detach_Wypozyczone));
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IDPracownika", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int IDPracownika
+		{
+			get
+			{
+				return this._IDPracownika;
+			}
+			set
+			{
+				if ((this._IDPracownika != value))
+				{
+					this.OnIDPracownikaChanging(value);
+					this.SendPropertyChanging();
+					this._IDPracownika = value;
+					this.SendPropertyChanged("IDPracownika");
+					this.OnIDPracownikaChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LoginP", DbType="VarChar(50)")]
+		public string LoginP
+		{
+			get
+			{
+				return this._LoginP;
+			}
+			set
+			{
+				if ((this._LoginP != value))
+				{
+					this.OnLoginPChanging(value);
+					this.SendPropertyChanging();
+					this._LoginP = value;
+					this.SendPropertyChanged("LoginP");
+					this.OnLoginPChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_HasloP", DbType="VarChar(50)")]
+		public string HasloP
+		{
+			get
+			{
+				return this._HasloP;
+			}
+			set
+			{
+				if ((this._HasloP != value))
+				{
+					this.OnHasloPChanging(value);
+					this.SendPropertyChanging();
+					this._HasloP = value;
+					this.SendPropertyChanged("HasloP");
+					this.OnHasloPChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Pracownik_Wypozyczone", Storage="_Wypozyczone", ThisKey="IDPracownika", OtherKey="PracownikID")]
+		public EntitySet<Wypozyczone> Wypozyczone
+		{
+			get
+			{
+				return this._Wypozyczone;
+			}
+			set
+			{
+				this._Wypozyczone.Assign(value);
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_Wypozyczone(Wypozyczone entity)
+		{
+			this.SendPropertyChanging();
+			entity.Pracownik = this;
+		}
+		
+		private void detach_Wypozyczone(Wypozyczone entity)
+		{
+			this.SendPropertyChanging();
+			entity.Pracownik = null;
+		}
+	}
+	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Rezerwacja")]
 	public partial class Rezerwacja : INotifyPropertyChanging, INotifyPropertyChanged
 	{
@@ -1163,13 +2331,13 @@ namespace Biblioteka.Model
 		
 		private System.Nullable<int> _UzytkownikID;
 		
-		private System.Nullable<int> _KsiazkaID;
+		private System.Nullable<int> _EgzemplarzID;
 		
 		private System.Nullable<System.DateTime> _DataRez;
 		
-		private EntityRef<Ksiazka> _Ksiazka;
+		private EntityRef<Egzemplarz> _Egzemplarz;
 		
-		private EntityRef<Uzytkownik> _Uzytkownik;
+		private EntityRef<Czytelnik> _Czytelnik;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -1179,16 +2347,16 @@ namespace Biblioteka.Model
     partial void OnIDRezerwacjaChanged();
     partial void OnUzytkownikIDChanging(System.Nullable<int> value);
     partial void OnUzytkownikIDChanged();
-    partial void OnKsiazkaIDChanging(System.Nullable<int> value);
-    partial void OnKsiazkaIDChanged();
+    partial void OnEgzemplarzIDChanging(System.Nullable<int> value);
+    partial void OnEgzemplarzIDChanged();
     partial void OnDataRezChanging(System.Nullable<System.DateTime> value);
     partial void OnDataRezChanged();
     #endregion
 		
 		public Rezerwacja()
 		{
-			this._Ksiazka = default(EntityRef<Ksiazka>);
-			this._Uzytkownik = default(EntityRef<Uzytkownik>);
+			this._Egzemplarz = default(EntityRef<Egzemplarz>);
+			this._Czytelnik = default(EntityRef<Czytelnik>);
 			OnCreated();
 		}
 		
@@ -1223,7 +2391,7 @@ namespace Biblioteka.Model
 			{
 				if ((this._UzytkownikID != value))
 				{
-					if (this._Uzytkownik.HasLoadedOrAssignedValue)
+					if (this._Czytelnik.HasLoadedOrAssignedValue)
 					{
 						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
 					}
@@ -1236,26 +2404,26 @@ namespace Biblioteka.Model
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_KsiazkaID", DbType="Int")]
-		public System.Nullable<int> KsiazkaID
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_EgzemplarzID", DbType="Int")]
+		public System.Nullable<int> EgzemplarzID
 		{
 			get
 			{
-				return this._KsiazkaID;
+				return this._EgzemplarzID;
 			}
 			set
 			{
-				if ((this._KsiazkaID != value))
+				if ((this._EgzemplarzID != value))
 				{
-					if (this._Ksiazka.HasLoadedOrAssignedValue)
+					if (this._Egzemplarz.HasLoadedOrAssignedValue)
 					{
 						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
 					}
-					this.OnKsiazkaIDChanging(value);
+					this.OnEgzemplarzIDChanging(value);
 					this.SendPropertyChanging();
-					this._KsiazkaID = value;
-					this.SendPropertyChanged("KsiazkaID");
-					this.OnKsiazkaIDChanged();
+					this._EgzemplarzID = value;
+					this.SendPropertyChanged("EgzemplarzID");
+					this.OnEgzemplarzIDChanged();
 				}
 			}
 		}
@@ -1280,60 +2448,60 @@ namespace Biblioteka.Model
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Ksiazka_Rezerwacja", Storage="_Ksiazka", ThisKey="KsiazkaID", OtherKey="IDKsiazki", IsForeignKey=true)]
-		public Ksiazka Ksiazka
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Egzemplarz_Rezerwacja", Storage="_Egzemplarz", ThisKey="EgzemplarzID", OtherKey="IDEgzeplarza", IsForeignKey=true)]
+		public Egzemplarz Egzemplarz
 		{
 			get
 			{
-				return this._Ksiazka.Entity;
+				return this._Egzemplarz.Entity;
 			}
 			set
 			{
-				Ksiazka previousValue = this._Ksiazka.Entity;
+				Egzemplarz previousValue = this._Egzemplarz.Entity;
 				if (((previousValue != value) 
-							|| (this._Ksiazka.HasLoadedOrAssignedValue == false)))
+							|| (this._Egzemplarz.HasLoadedOrAssignedValue == false)))
 				{
 					this.SendPropertyChanging();
 					if ((previousValue != null))
 					{
-						this._Ksiazka.Entity = null;
+						this._Egzemplarz.Entity = null;
 						previousValue.Rezerwacja.Remove(this);
 					}
-					this._Ksiazka.Entity = value;
+					this._Egzemplarz.Entity = value;
 					if ((value != null))
 					{
 						value.Rezerwacja.Add(this);
-						this._KsiazkaID = value.IDKsiazki;
+						this._EgzemplarzID = value.IDEgzeplarza;
 					}
 					else
 					{
-						this._KsiazkaID = default(Nullable<int>);
+						this._EgzemplarzID = default(Nullable<int>);
 					}
-					this.SendPropertyChanged("Ksiazka");
+					this.SendPropertyChanged("Egzemplarz");
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Uzytkownik_Rezerwacja", Storage="_Uzytkownik", ThisKey="UzytkownikID", OtherKey="IDUzytkownika", IsForeignKey=true)]
-		public Uzytkownik Uzytkownik
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Czytelnik_Rezerwacja", Storage="_Czytelnik", ThisKey="UzytkownikID", OtherKey="IDUzytkownika", IsForeignKey=true)]
+		public Czytelnik Czytelnik
 		{
 			get
 			{
-				return this._Uzytkownik.Entity;
+				return this._Czytelnik.Entity;
 			}
 			set
 			{
-				Uzytkownik previousValue = this._Uzytkownik.Entity;
+				Czytelnik previousValue = this._Czytelnik.Entity;
 				if (((previousValue != value) 
-							|| (this._Uzytkownik.HasLoadedOrAssignedValue == false)))
+							|| (this._Czytelnik.HasLoadedOrAssignedValue == false)))
 				{
 					this.SendPropertyChanging();
 					if ((previousValue != null))
 					{
-						this._Uzytkownik.Entity = null;
+						this._Czytelnik.Entity = null;
 						previousValue.Rezerwacja.Remove(this);
 					}
-					this._Uzytkownik.Entity = value;
+					this._Czytelnik.Entity = value;
 					if ((value != null))
 					{
 						value.Rezerwacja.Add(this);
@@ -1343,7 +2511,7 @@ namespace Biblioteka.Model
 					{
 						this._UzytkownikID = default(Nullable<int>);
 					}
-					this.SendPropertyChanged("Uzytkownik");
+					this.SendPropertyChanged("Czytelnik");
 				}
 			}
 		}
@@ -1366,316 +2534,6 @@ namespace Biblioteka.Model
 			{
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Uzytkownik")]
-	public partial class Uzytkownik : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _IDUzytkownika;
-		
-		private string _ImieU;
-		
-		private string _NazwiskoU;
-		
-		private string _Ulica;
-		
-		private string _Miasto;
-		
-		private System.Nullable<int> _Nr_domu;
-		
-		private string _Login;
-		
-		private string _Haslo;
-		
-		private System.Nullable<int> _Tryb;
-		
-		private EntitySet<Wyporzyczone> _Wyporzyczone;
-		
-		private EntitySet<Rezerwacja> _Rezerwacja;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnIDUzytkownikaChanging(int value);
-    partial void OnIDUzytkownikaChanged();
-    partial void OnImieUChanging(string value);
-    partial void OnImieUChanged();
-    partial void OnNazwiskoUChanging(string value);
-    partial void OnNazwiskoUChanged();
-    partial void OnUlicaChanging(string value);
-    partial void OnUlicaChanged();
-    partial void OnMiastoChanging(string value);
-    partial void OnMiastoChanged();
-    partial void OnNr_domuChanging(System.Nullable<int> value);
-    partial void OnNr_domuChanged();
-    partial void OnLoginChanging(string value);
-    partial void OnLoginChanged();
-    partial void OnHasloChanging(string value);
-    partial void OnHasloChanged();
-    partial void OnTrybChanging(System.Nullable<int> value);
-    partial void OnTrybChanged();
-    #endregion
-		
-		public Uzytkownik()
-		{
-			this._Wyporzyczone = new EntitySet<Wyporzyczone>(new Action<Wyporzyczone>(this.attach_Wyporzyczone), new Action<Wyporzyczone>(this.detach_Wyporzyczone));
-			this._Rezerwacja = new EntitySet<Rezerwacja>(new Action<Rezerwacja>(this.attach_Rezerwacja), new Action<Rezerwacja>(this.detach_Rezerwacja));
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IDUzytkownika", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int IDUzytkownika
-		{
-			get
-			{
-				return this._IDUzytkownika;
-			}
-			set
-			{
-				if ((this._IDUzytkownika != value))
-				{
-					this.OnIDUzytkownikaChanging(value);
-					this.SendPropertyChanging();
-					this._IDUzytkownika = value;
-					this.SendPropertyChanged("IDUzytkownika");
-					this.OnIDUzytkownikaChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ImieU", DbType="NChar(20)")]
-		public string ImieU
-		{
-			get
-			{
-				return this._ImieU;
-			}
-			set
-			{
-				if ((this._ImieU != value))
-				{
-					this.OnImieUChanging(value);
-					this.SendPropertyChanging();
-					this._ImieU = value;
-					this.SendPropertyChanged("ImieU");
-					this.OnImieUChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NazwiskoU", DbType="NChar(30)")]
-		public string NazwiskoU
-		{
-			get
-			{
-				return this._NazwiskoU;
-			}
-			set
-			{
-				if ((this._NazwiskoU != value))
-				{
-					this.OnNazwiskoUChanging(value);
-					this.SendPropertyChanging();
-					this._NazwiskoU = value;
-					this.SendPropertyChanged("NazwiskoU");
-					this.OnNazwiskoUChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Ulica", DbType="NChar(20)")]
-		public string Ulica
-		{
-			get
-			{
-				return this._Ulica;
-			}
-			set
-			{
-				if ((this._Ulica != value))
-				{
-					this.OnUlicaChanging(value);
-					this.SendPropertyChanging();
-					this._Ulica = value;
-					this.SendPropertyChanged("Ulica");
-					this.OnUlicaChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Miasto", DbType="NChar(10)")]
-		public string Miasto
-		{
-			get
-			{
-				return this._Miasto;
-			}
-			set
-			{
-				if ((this._Miasto != value))
-				{
-					this.OnMiastoChanging(value);
-					this.SendPropertyChanging();
-					this._Miasto = value;
-					this.SendPropertyChanged("Miasto");
-					this.OnMiastoChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Nr_domu", DbType="Int")]
-		public System.Nullable<int> Nr_domu
-		{
-			get
-			{
-				return this._Nr_domu;
-			}
-			set
-			{
-				if ((this._Nr_domu != value))
-				{
-					this.OnNr_domuChanging(value);
-					this.SendPropertyChanging();
-					this._Nr_domu = value;
-					this.SendPropertyChanged("Nr_domu");
-					this.OnNr_domuChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Login", DbType="VarChar(20)")]
-		public string Login
-		{
-			get
-			{
-				return this._Login;
-			}
-			set
-			{
-				if ((this._Login != value))
-				{
-					this.OnLoginChanging(value);
-					this.SendPropertyChanging();
-					this._Login = value;
-					this.SendPropertyChanged("Login");
-					this.OnLoginChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Haslo", DbType="VarChar(20)")]
-		public string Haslo
-		{
-			get
-			{
-				return this._Haslo;
-			}
-			set
-			{
-				if ((this._Haslo != value))
-				{
-					this.OnHasloChanging(value);
-					this.SendPropertyChanging();
-					this._Haslo = value;
-					this.SendPropertyChanged("Haslo");
-					this.OnHasloChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Tryb", DbType="Int")]
-		public System.Nullable<int> Tryb
-		{
-			get
-			{
-				return this._Tryb;
-			}
-			set
-			{
-				if ((this._Tryb != value))
-				{
-					this.OnTrybChanging(value);
-					this.SendPropertyChanging();
-					this._Tryb = value;
-					this.SendPropertyChanged("Tryb");
-					this.OnTrybChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Uzytkownik_Wyporzyczone", Storage="_Wyporzyczone", ThisKey="IDUzytkownika", OtherKey="UzytkownikID")]
-		public EntitySet<Wyporzyczone> Wyporzyczone
-		{
-			get
-			{
-				return this._Wyporzyczone;
-			}
-			set
-			{
-				this._Wyporzyczone.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Uzytkownik_Rezerwacja", Storage="_Rezerwacja", ThisKey="IDUzytkownika", OtherKey="UzytkownikID")]
-		public EntitySet<Rezerwacja> Rezerwacja
-		{
-			get
-			{
-				return this._Rezerwacja;
-			}
-			set
-			{
-				this._Rezerwacja.Assign(value);
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-		
-		private void attach_Wyporzyczone(Wyporzyczone entity)
-		{
-			this.SendPropertyChanging();
-			entity.Uzytkownik = this;
-		}
-		
-		private void detach_Wyporzyczone(Wyporzyczone entity)
-		{
-			this.SendPropertyChanging();
-			entity.Uzytkownik = null;
-		}
-		
-		private void attach_Rezerwacja(Rezerwacja entity)
-		{
-			this.SendPropertyChanging();
-			entity.Uzytkownik = this;
-		}
-		
-		private void detach_Rezerwacja(Rezerwacja entity)
-		{
-			this.SendPropertyChanging();
-			entity.Uzytkownik = null;
 		}
 	}
 	
@@ -1727,7 +2585,7 @@ namespace Biblioteka.Model
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NazwaWyd", DbType="NChar(30)")]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NazwaWyd", DbType="VarChar(30)")]
 		public string NazwaWyd
 		{
 			get
@@ -1790,322 +2648,6 @@ namespace Biblioteka.Model
 		{
 			this.SendPropertyChanging();
 			entity.Wydawnictwo = null;
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Autor")]
-	public partial class Autor : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _IDAutor;
-		
-		private string _Imie;
-		
-		private string _Nazwisko;
-		
-		private System.Nullable<int> _NarodowoscID;
-		
-		private System.Nullable<System.DateTime> _Data_ur;
-		
-		private System.Nullable<System.DateTime> _Data_sm;
-		
-		private System.Nullable<int> _EpokaID;
-		
-		private EntitySet<Ksiazka> _Ksiazka;
-		
-		private EntityRef<Epoka> _Epoka;
-		
-		private EntityRef<Narodowosc> _Narodowosc;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnIDAutorChanging(int value);
-    partial void OnIDAutorChanged();
-    partial void OnImieChanging(string value);
-    partial void OnImieChanged();
-    partial void OnNazwiskoChanging(string value);
-    partial void OnNazwiskoChanged();
-    partial void OnNarodowoscIDChanging(System.Nullable<int> value);
-    partial void OnNarodowoscIDChanged();
-    partial void OnData_urChanging(System.Nullable<System.DateTime> value);
-    partial void OnData_urChanged();
-    partial void OnData_smChanging(System.Nullable<System.DateTime> value);
-    partial void OnData_smChanged();
-    partial void OnEpokaIDChanging(System.Nullable<int> value);
-    partial void OnEpokaIDChanged();
-    #endregion
-		
-		public Autor()
-		{
-			this._Ksiazka = new EntitySet<Ksiazka>(new Action<Ksiazka>(this.attach_Ksiazka), new Action<Ksiazka>(this.detach_Ksiazka));
-			this._Epoka = default(EntityRef<Epoka>);
-			this._Narodowosc = default(EntityRef<Narodowosc>);
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IDAutor", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int IDAutor
-		{
-			get
-			{
-				return this._IDAutor;
-			}
-			set
-			{
-				if ((this._IDAutor != value))
-				{
-					this.OnIDAutorChanging(value);
-					this.SendPropertyChanging();
-					this._IDAutor = value;
-					this.SendPropertyChanged("IDAutor");
-					this.OnIDAutorChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Imie", DbType="NChar(20)")]
-		public string Imie
-		{
-			get
-			{
-				return this._Imie;
-			}
-			set
-			{
-				if ((this._Imie != value))
-				{
-					this.OnImieChanging(value);
-					this.SendPropertyChanging();
-					this._Imie = value;
-					this.SendPropertyChanged("Imie");
-					this.OnImieChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Nazwisko", DbType="NChar(30)")]
-		public string Nazwisko
-		{
-			get
-			{
-				return this._Nazwisko;
-			}
-			set
-			{
-				if ((this._Nazwisko != value))
-				{
-					this.OnNazwiskoChanging(value);
-					this.SendPropertyChanging();
-					this._Nazwisko = value;
-					this.SendPropertyChanged("Nazwisko");
-					this.OnNazwiskoChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NarodowoscID", DbType="Int")]
-		public System.Nullable<int> NarodowoscID
-		{
-			get
-			{
-				return this._NarodowoscID;
-			}
-			set
-			{
-				if ((this._NarodowoscID != value))
-				{
-					if (this._Narodowosc.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnNarodowoscIDChanging(value);
-					this.SendPropertyChanging();
-					this._NarodowoscID = value;
-					this.SendPropertyChanged("NarodowoscID");
-					this.OnNarodowoscIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Data_ur", DbType="Date")]
-		public System.Nullable<System.DateTime> Data_ur
-		{
-			get
-			{
-				return this._Data_ur;
-			}
-			set
-			{
-				if ((this._Data_ur != value))
-				{
-					this.OnData_urChanging(value);
-					this.SendPropertyChanging();
-					this._Data_ur = value;
-					this.SendPropertyChanged("Data_ur");
-					this.OnData_urChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Data_sm", DbType="Date")]
-		public System.Nullable<System.DateTime> Data_sm
-		{
-			get
-			{
-				return this._Data_sm;
-			}
-			set
-			{
-				if ((this._Data_sm != value))
-				{
-					this.OnData_smChanging(value);
-					this.SendPropertyChanging();
-					this._Data_sm = value;
-					this.SendPropertyChanged("Data_sm");
-					this.OnData_smChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_EpokaID", DbType="Int")]
-		public System.Nullable<int> EpokaID
-		{
-			get
-			{
-				return this._EpokaID;
-			}
-			set
-			{
-				if ((this._EpokaID != value))
-				{
-					if (this._Epoka.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnEpokaIDChanging(value);
-					this.SendPropertyChanging();
-					this._EpokaID = value;
-					this.SendPropertyChanged("EpokaID");
-					this.OnEpokaIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Autor_Ksiazka", Storage="_Ksiazka", ThisKey="IDAutor", OtherKey="AutorID")]
-		public EntitySet<Ksiazka> Ksiazka
-		{
-			get
-			{
-				return this._Ksiazka;
-			}
-			set
-			{
-				this._Ksiazka.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Epoka_Autor", Storage="_Epoka", ThisKey="EpokaID", OtherKey="IDEpoka", IsForeignKey=true)]
-		public Epoka Epoka
-		{
-			get
-			{
-				return this._Epoka.Entity;
-			}
-			set
-			{
-				Epoka previousValue = this._Epoka.Entity;
-				if (((previousValue != value) 
-							|| (this._Epoka.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._Epoka.Entity = null;
-						previousValue.Autor.Remove(this);
-					}
-					this._Epoka.Entity = value;
-					if ((value != null))
-					{
-						value.Autor.Add(this);
-						this._EpokaID = value.IDEpoka;
-					}
-					else
-					{
-						this._EpokaID = default(Nullable<int>);
-					}
-					this.SendPropertyChanged("Epoka");
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Narodowosc_Autor", Storage="_Narodowosc", ThisKey="NarodowoscID", OtherKey="IDNarodowosc", IsForeignKey=true)]
-		public Narodowosc Narodowosc
-		{
-			get
-			{
-				return this._Narodowosc.Entity;
-			}
-			set
-			{
-				Narodowosc previousValue = this._Narodowosc.Entity;
-				if (((previousValue != value) 
-							|| (this._Narodowosc.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._Narodowosc.Entity = null;
-						previousValue.Autor.Remove(this);
-					}
-					this._Narodowosc.Entity = value;
-					if ((value != null))
-					{
-						value.Autor.Add(this);
-						this._NarodowoscID = value.IDNarodowosc;
-					}
-					else
-					{
-						this._NarodowoscID = default(Nullable<int>);
-					}
-					this.SendPropertyChanged("Narodowosc");
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-		
-		private void attach_Ksiazka(Ksiazka entity)
-		{
-			this.SendPropertyChanging();
-			entity.Autor = this;
-		}
-		
-		private void detach_Ksiazka(Ksiazka entity)
-		{
-			this.SendPropertyChanging();
-			entity.Autor = null;
 		}
 	}
 }

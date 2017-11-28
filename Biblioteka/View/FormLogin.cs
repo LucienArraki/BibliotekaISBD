@@ -44,7 +44,7 @@ namespace Library
 
                 try                                                                 // Pilnuje aby nie przekroczyć zakresu
                 {
-                    var login = (from User in dataContext.Uzytkownik where User.Login == textBoxPESEL.Text where User.Login != null select User).FirstOrDefault();
+                    var login = (from User in dataContext.Czytelnik where User.Login == textBoxPESEL.Text where User.Login != null select User).FirstOrDefault();
 
                     if (login.Haslo == textBoxPassword.Text)
                     {
